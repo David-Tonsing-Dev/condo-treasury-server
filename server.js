@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+const axios = require("axios");
 
 const app = express();
 const PORT = process.env.PORT;
@@ -15,19 +16,19 @@ app.get("/", (req, res) => {
 });
 
 app.get("/condo", async (req, res) => {
-  const resp = await axios({
-    url: "https://pro-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest?symbol=condo",
-
-    method: "get",
-    headers: {
-      "X-CMC_PRO_API_KEY": process.env.COINMARKETCAP_KEY,
-      "Access-Control-Allow-Origin": "*",
-    },
-  });
+  const resp = await axios.get(
+    "https://pro-api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=condo",
+    {
+      headers: {
+        "x-cg-pro-api-key": process.env.COINGECKO_KEY,
+        "Access-Control-Allow-Origin": "*",
+      },
+    }
+  );
 
   return res.status(200).json({
     success: true,
-    condoDetail: resp.data.data.CONDO[0],
+    condoDetail: resp.data[0],
   });
 });
 
