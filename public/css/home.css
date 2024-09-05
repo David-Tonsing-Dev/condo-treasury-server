@@ -260,7 +260,12 @@
 }
 .fire-gif {
   /* margin-right: 2rem; */
-  width: 220px;
+  /* width: 220px;
+  position: absolute;
+  height: 17rem;
+  right: 1rem;
+  top: -17rem; */
+  width: 160px;
   position: absolute;
   height: 17rem;
   right: 1rem;
@@ -463,7 +468,9 @@
   transform: rotate(-90deg);
 }
 .coaster-img {
-  width: 38%;
+  /* width: 38%;
+  height: 100%; */
+  width: 45%;
   height: 100%;
 }
 .coin-img-bg {
@@ -522,7 +529,7 @@
   top: 0rem;
 }
 .how-to-buy-flex {
-  margin-left: 16rem;
+  margin-left: 25rem;
   display: flex;
   align-items: center;
   gap: 3rem;
@@ -1053,6 +1060,7 @@
   .how-to-buy-flex {
     display: block;
     gap: 3rem;
+    margin-left: 2rem;
   }
   .contract-add {
     padding-top: 0rem !important;
@@ -1193,9 +1201,7 @@
     align-items: center;
     justify-content: center;
   }
-  .how-to-buy-flex {
-    margin-left: 0rem;
-  }
+
   .buy-btn-tokenomics .buybtn-text {
     font-size: 10px;
   }
@@ -1267,15 +1273,13 @@
     transform: rotate(0deg);
     width: 132px;
   }
-  .how-to-buy-flex {
-    margin-left: 1rem;
-  }
+
   .how-to-buy-frames {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
-    margin-top: -3rem;
+    margin-top: -1rem;
   }
   .text-link-lifi {
     position: absolute;
@@ -1411,6 +1415,11 @@
   .tokenomics-flex {
     padding: 9rem 0 0rem 0;
     gap: 1rem;
+  }
+}
+@media (max-width: 765px) {
+  .how-to-buy-flex {
+    /* margin-left: 10rem; */
   }
 }
 @media (min-width: 990px) and (max-width: 1250px) {
