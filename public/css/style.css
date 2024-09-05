@@ -1,0 +1,210 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.silkscreen-regular {
+  font-family: "Silkscreen", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.silkscreen-bold {
+  font-family: "Silkscreen", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+/* .main-container {
+  background-image: url(./Images/prepage/banner.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+} */
+/* .main-container {
+  height: 100%;
+} */
+.prePage {
+  /* position: relative; */
+  background-image: url(/images/prepage/banner.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  /* height: 100%; */
+  height: 46rem;
+  /* overflow: hidden; */
+}
+
+.arrow-img {
+  width: 30px;
+  height: 30px;
+  transform: rotate(135deg);
+}
+.click-me-text {
+  color: #bd2c27;
+  font-size: 3rem;
+}
+.main-info {
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 6rem;
+  padding-left: 30% !important;
+}
+.buy-btn-address {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+}
+.contract-add {
+  color: #000000;
+  font-size: 12px;
+}
+.contract-address {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 300px;
+}
+/* .dex_tool {
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+} */
+.dex_tool img {
+  margin-top: 10px;
+  background-color: #066dae;
+  width: 8rem;
+  padding: 6px 20px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.dex_tool {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  margin-top: -3rem;
+}
+.dex_tool:hover {
+  -webkit-filter: drop-shadow(0px 0px 1.4px #003b78);
+  filter: drop-shadow(0px 0px 1.4px #003b78);
+}
+
+@media (max-width: 320px) {
+  .contract-address {
+    max-width: 250px;
+  }
+}
+.ondo-person .click-navigate {
+  background-color: transparent;
+  border: none;
+  display: flex;
+  flex-direction: column;
+}
+.click-to-go {
+  animation: wiggle 1.7s ease-in-out infinite;
+  transform-origin: bottom center;
+  margin-bottom: -5rem;
+  z-index: 1;
+  margin-left: -2rem;
+}
+.ondo-person {
+  display: flex;
+  align-items: end;
+}
+.bg-building {
+  position: absolute;
+  top: 4.5rem;
+  left: 20%;
+  z-index: -1;
+}
+.zoom-in {
+  transform: scale(0.2) translateY(-10px) translateX(-80rem);
+  transition: transform 1s ease;
+}
+
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+/* 
+.bg-sub-img-abs,
+.mini-imgs-bg,
+.bg-imgshadow-pretoken {
+  width: fit-content;
+  height: fit-content;
+}
+.mini-imgs-bg {
+  position: absolute;
+  top: 2rem;
+  left: 18%;
+} */
+@media (max-width: 325px) {
+  .click-me-text {
+    color: #bd2c27;
+    font-size: 2rem;
+  }
+}
+@media (max-width: 380px) {
+  .mini-img-3 {
+    padding-top: 2rem;
+  }
+  .ondo-person .click-navigate {
+    width: 7rem !important;
+  }
+}
+@media (max-width: 550px) {
+  .prePage {
+    background-image: url(/images/prepage/banner-mob.png);
+    /* background-image: url(./Images/prepage/mobile-prepagedemo.png); */
+    /* background-image: url(./Images/prepage/bg-prepage.png); */
+    /* background-image: url(./Images/prepage/bg20copy.png); */
+    /* height: 100vh; */
+  }
+  .mini-img-3 {
+    width: 100%;
+  }
+  .main-info {
+    padding-top: 1rem;
+    padding-left: 10% !important;
+  }
+  .zoom-in {
+    transform: scale(0.2) translateY(200px) translateX(200px);
+    transition: transform 1s ease;
+  }
+  .ondo-person .click-navigate {
+    width: 10rem;
+  }
+  .dex_tool {
+    margin-top: 0;
+  }
+}
+@media (min-width: 550px) and (max-width: 880px) {
+  .mini-img-3 {
+    padding-left: 3rem;
+  }
+  .zoom-in {
+    transform: scale(0.2) translateY(-10px) translateX(-100px);
+    transition: transform 1s ease;
+  }
+  .dex_tool {
+    margin-top: -3rem;
+  }
+}
+@media (min-width: 2560px) {
+  .bg-building {
+    position: absolute;
+    top: 22rem;
+  }
+  .main-info {
+    padding-top: 28rem;
+  }
+}

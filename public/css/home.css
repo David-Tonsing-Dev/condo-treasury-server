@@ -1,0 +1,1527 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.silkscreen-regular {
+  font-family: "Silkscreen", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.silkscreen-bold {
+  font-family: "Silkscreen", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+.navbar-bg {
+  /* background-color: rgb(15, 120, 186); */
+  /* background-color: #2f88d8; */
+  /* background-color: #003b78; */
+  background-color: #7ccafd;
+  /* height: 90px; */
+  height: 82px;
+  position: sticky;
+  top: 0;
+  border-bottom: 3px solid #76c7fe;
+  z-index: 10;
+}
+
+.social-links,
+.social-links-footer {
+  /* display: block; */
+  display: flex;
+  color: #fff;
+}
+.social-links i {
+  cursor: pointer;
+}
+.social-links-mobile {
+  display: none;
+}
+.dex_tool {
+  z-index: 4;
+}
+.dex_tool img {
+  margin-top: 10px;
+  background-color: #a2dcff;
+  width: 8rem;
+  padding: 6px 20px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.dex_tool:hover {
+  -webkit-filter: drop-shadow(0px 0px 1.4px #003b78);
+  filter: drop-shadow(0px 0px 1.4px #003b78);
+}
+
+.navbar-nav li a {
+  color: #fff;
+}
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.3rem;
+}
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link.show {
+  color: #005393 !important;
+}
+.nav-link:focus,
+.nav-link:hover {
+  color: #005393 !important;
+}
+.nav-btns-bg {
+  background: url("../images/banner/banner-btn-pixelated.svg");
+  width: 126px;
+  height: 41px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  border: none !important;
+  -webkit-filter: drop-shadow(0px 0px 1.4px #003b78);
+  filter: drop-shadow(0px 0px 1.4px #003b78);
+}
+.nav-btns-bg a {
+  text-decoration: none;
+}
+.nav-btns-bg:hover {
+  color: #005393 !important;
+  -webkit-filter: drop-shadow(0px 0px 2.4px #000000);
+  filter: drop-shadow(0px 0px 2.4px #000);
+}
+.search-btns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.navbar-toggler {
+  background-color: #7ccafd !important;
+}
+.social-links a,
+.social-links-mobile a,
+.social-links-footer a {
+  text-decoration: none;
+  color: #fff;
+}
+.social-links i:hover {
+  color: #005393;
+}
+.social-links-footer i:hover {
+  color: #005393;
+}
+.social-links-mobile i:hover {
+  color: #000;
+}
+/* banner */
+.body-main {
+  background: linear-gradient(180deg, #7ccafd, #dfcdbf79, #94d3f6);
+}
+.banner-bg-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.banner-main-bg {
+  background-image: url(./images/banner/background.svg);
+  background-repeat: no-repeat;
+  background-position: center top 1rem;
+  background-size: cover;
+  /* height: 100vh; */
+  height: 39rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.banner-main-bg .contract-add {
+  text-align: center;
+  padding-top: 10px;
+}
+.banner-bg-section .buy-btn-address {
+  z-index: 5;
+}
+.banner-bg-section.buy-btn-address.fa-copy {
+  cursor: pointer;
+}
+.ondo-owner-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.year-logo {
+  width: 50rem;
+  height: 100%;
+  position: absolute;
+}
+.year-logo img {
+  margin: auto;
+}
+.title-logo {
+  width: 100%;
+  height: 9rem;
+  z-index: 2;
+  /* position: absolute;
+  top: 31rem; */
+}
+.banner-gif {
+  width: 26rem;
+  height: 21rem;
+  z-index: 1;
+  margin-bottom: -3rem;
+  position: relative;
+  left: 50%; /* Initial position: centered */
+  transform: translateX(-75%); /* Center the image horizontally */
+  transition: left 0.3s ease; /* Add smooth transition */
+}
+.text-banner-img {
+  transform: rotate(20.128deg);
+}
+.lmao-img-text {
+  transform: rotate(-25deg);
+}
+.ondo-condo-banner {
+  /* display: flex; */
+  align-items: end;
+  justify-content: center;
+}
+/* audio */
+.audio-btns {
+  position: fixed;
+  bottom: 1rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  padding: 4px;
+  z-index: 3;
+  /* pointer-events: none; */
+}
+.audio-btns button {
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+.audio-btns button:focus-visible {
+  outline: none !important;
+}
+/* about */
+.section-2 {
+  padding: 100px 50px;
+}
+.section-2-text {
+  font-size: 20px;
+  border: 3px solid #62bcf8;
+  border-radius: 0.5rem;
+  width: 25rem;
+  padding: 1.5rem;
+}
+.section-2-text a {
+  text-decoration: none;
+  color: #0088dd;
+}
+.section-2-text a:hover {
+  text-decoration: underline;
+  /* color: #ffffff; */
+}
+.section-2-data {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.section-2-main {
+  position: relative;
+}
+.arrow-section-2-img {
+  width: fit-content;
+  height: fit-content;
+  transform: rotate(10deg);
+  align-self: center;
+  position: absolute;
+  top: 2rem;
+  left: 37%;
+}
+.text-section-3 {
+  gap: 0.6rem;
+  /* display: flex; */
+  /* flex-direction: column; */
+  align-items: self-end;
+  justify-content: end;
+  font-size: 20px;
+  border: 3px solid #62bcf8;
+  border-radius: 0.5rem;
+  width: 50%;
+  position: absolute;
+  padding: 1.5rem;
+  top: 23rem;
+  left: 48%;
+}
+.fire-gif {
+  /* margin-right: 2rem; */
+  width: 220px;
+  position: absolute;
+  height: 17rem;
+  right: 1rem;
+  top: -17rem;
+}
+.moving-cat-gif {
+  /* margin-right: 2rem; */
+  width: 400px;
+  position: absolute;
+  height: 12rem;
+  right: 0rem;
+  top: 12.5rem;
+  z-index: 1;
+}
+
+.twitter-card {
+  border: 2px solid #a7dcff;
+  width: 30rem;
+  padding: 3rem;
+  background-color: #62bcf8;
+  border-radius: 0.5rem;
+  margin-top: 19rem;
+  position: relative;
+}
+.card-data {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+}
+.inner-txt-twitter-card {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+.twitter-box {
+  display: flex;
+  align-items: center;
+}
+.twitter-box-profile {
+  font-size: 18px;
+  margin-bottom: 0 !important;
+  padding-bottom: 7px;
+}
+.img-twitter-box {
+  width: fit-content;
+  height: fit-content;
+  max-width: 100%;
+}
+.twiiter-person-name-id {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+}
+.twitter-card a {
+  color: #000;
+  text-decoration: none;
+}
+.twitter-box-username {
+  font-size: 12px;
+  margin-bottom: 0 !important;
+}
+.tweet-twitter-box {
+  margin-top: 1rem;
+}
+.twitter-pixelated {
+  width: fit-content;
+  height: fit-content;
+  position: absolute;
+  top: -1.75rem;
+  left: -1.75rem;
+}
+.typing-cursor {
+  display: inline-block;
+  animation: blink 0.7s infinite alternate;
+}
+@keyframes blink {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+/* frames-animation */
+.section-3 {
+  position: relative;
+  padding-top: 50px;
+  padding-bottom: 100px;
+}
+/* .section-3-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+/* .fade-animation {
+  height: 50rem;
+  width: 100%;
+  animation-name: fading;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  -o-object-position: 50% 50%;
+  object-position: 50% 50%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  -o-object-fit: fill;
+  object-fit: fill;
+  position: relative;
+} */
+.blackrockimg img {
+  width: 100%;
+  height: 100%;
+  margin-left: 50%;
+}
+.blackrockimg-bg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(https://res.cloudinary.com/dbtsrjssc/image/upload/v1712228138/blakrok-office-new_1_1_q4kv0q.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.blackrock-handshake {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.colab-img {
+  height: 36rem;
+}
+.footer-center-section {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.footer-desc p {
+  font-size: 10px;
+  text-align: center;
+}
+.footer-desc {
+  padding: 0 20px;
+}
+.copyright-footer {
+  font-size: 10px;
+  padding: 20px 0;
+  text-align: center;
+}
+@media (min-width: 1600px) {
+  .colab-img {
+    height: 65rem;
+  }
+}
+/* @keyframes fading {
+  0% {
+    background-image: url(./images/frames/frame-1.png);
+  }
+  25% {
+    background-image: url(./images/frames/frame-2.png);
+  }
+  50% {
+    background-image: url(./images/frames/frame-3.png);
+  }
+  75% {
+    background-image: url(./images/frames/frame-4.png);
+  }
+  100% {
+    background-image: url(./images/frames/frame-1.png);
+  }
+} */
+.kitgun-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 37%;
+  top: 9rem;
+  /* z-index: -1; */
+  opacity: 0.5 !important;
+}
+/* how-it-works */
+.section-4 {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+.section-4-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+.sec-4 {
+  position: relative;
+}
+.running-main-img {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+.coaster-img {
+  width: 38%;
+  height: 100%;
+}
+.coin-img-bg {
+  transform: rotate(20deg);
+  width: 5rem;
+  position: absolute;
+  top: -2rem;
+  right: 0;
+  /* z-index: -1; */
+  opacity: 0.5;
+}
+.coin-img2-bg {
+  width: 5rem;
+  position: absolute;
+  top: -6rem;
+  left: 21rem;
+  opacity: 0.3;
+}
+.section-4-text {
+  width: 90%;
+  font-size: 18px;
+}
+.text-p-section-4 {
+  font-size: 24px;
+  color: rgb(127, 0, 0);
+}
+.section-4-list {
+  list-style: decimal;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+.section-5 {
+  padding-top: 100px;
+  position: relative;
+  padding-bottom: 60px;
+}
+.bg-how-to-buy {
+  position: absolute;
+  height: 30rem;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+.animation-how-to-buy {
+  position: relative;
+  width: 100%;
+}
+.section-5-main {
+  position: absolute;
+  background-color: transparent;
+  top: 0rem;
+}
+.how-to-buy-flex {
+  margin-left: 16rem;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+.buy-btn-inner {
+  background: url(./images/banner/banner-btn-pixelated.svg);
+  width: 156px;
+  height: 51px;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  transform: rotate(-5deg);
+  -webkit-filter: drop-shadow(0px 0px 1.4px #003b78);
+  filter: drop-shadow(0px 0px 1.4px #003b78);
+}
+.buy-btn-tokenomics {
+  transform: rotate(0deg);
+  text-align: center;
+  /* padding-top: 14px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.buy-btn-tokenomics a {
+  text-decoration: none;
+}
+.buy-btn-tokenomics:hover {
+  color: #005393 !important;
+  -webkit-filter: drop-shadow(0px 0px 2.4px #000000);
+  filter: drop-shadow(0px 0px 3px #000);
+  cursor: pointer;
+}
+.buy-btn-tokenomics:hover a {
+  color: #005393 !important;
+}
+.cta-btn-buys {
+  padding-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.cta-btn-buys a {
+  text-decoration: none;
+}
+.buybtn-text {
+  /* color: rgb(200, 0, 0); */
+  color: #fff;
+  font-size: 12px;
+  padding-top: 10px;
+  text-align: center;
+}
+.buy-btn-address {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.contract-add {
+  color: #000000;
+  font-size: 12px;
+}
+.contract-address {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 300px;
+}
+#copyIcon.fa-check {
+  color: green !important;
+}
+.copy-btn {
+  font-size: 12px;
+  margin-top: 8px;
+}
+.copy-btn i {
+  color: #000000;
+}
+.how-to-buy-btn a {
+  text-decoration: none;
+}
+.laser-eyes-gif {
+  width: 13rem;
+  height: 12rem;
+  margin-top: 1.3rem;
+  margin-left: 15rem;
+}
+.how-to-buy-frames {
+  display: flex;
+  align-items: center;
+
+  position: initial;
+  top: 0;
+  justify-content: center;
+  gap: 15px;
+  /* width: fit-content; */
+  left: 19rem;
+  /* flex-wrap: wrap; */
+  /* transform: translate3d(34.6613px, 0px, 0px); */
+}
+/* .img-3-how {
+  position: relative;
+} */
+.text-link {
+  position: absolute;
+  bottom: 6rem;
+  right: 36%;
+  font-size: 10px;
+  cursor: pointer;
+  z-index: 2;
+  /* opacity: 0; */
+}
+
+.text-link-lifi {
+  position: absolute;
+  bottom: 6rem;
+  right: 31%;
+  font-size: 14px;
+  /* font-size: 10px; */
+  cursor: pointer;
+  z-index: 2;
+  opacity: 0;
+}
+/* New changes */
+.img-1-how {
+  position: relative;
+}
+
+.app-link-android {
+  position: absolute;
+  opacity: 0;
+  bottom: 4.7rem;
+  left: 15%;
+  cursor: pointer;
+  font-size: 12px;
+  z-index: 2;
+}
+.app-link-apple {
+  bottom: 4.7rem;
+  left: 7%;
+  position: absolute;
+  opacity: 0;
+
+  cursor: pointer;
+  z-index: 2;
+  font-size: 12px;
+}
+/* new changes end */
+/* .text-link:hover {
+  text-decoration: dashed;
+  opacity: 1;
+} */
+.img-1-how img,
+.img-2-how img,
+.img-3-how img,
+.img-4-how img {
+  width: 18rem;
+  height: 10rem;
+  /* opacity: 0.5454; */
+  opacity: 1;
+}
+/* .img-2-how,
+.img-4-how {
+  margin-top: 2rem;
+} */
+
+/* tokenomics */
+#tokenomics {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+.tokenomics-flex {
+  display: flex;
+  align-items: center;
+  /* padding: 6rem 0 7rem 0; */
+  justify-content: center;
+  gap: 2rem;
+}
+.left-tokenomics {
+  position: relative;
+}
+.tokenomics-banner-img {
+  /* width: fit-content;
+  height: fit-content; */
+  width: 7rem;
+  height: 100%;
+  display: block;
+}
+
+.tokenomics-banner-img-mobile {
+  display: none;
+}
+.cry-cat-gif {
+  width: 12rem;
+  height: 9rem !important; /* width: 2rem; */
+  position: absolute;
+  top: -8rem;
+  left: -3.8rem;
+  transform: rotate(7deg);
+}
+.tokenomics-right {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.tokenomics-first-row {
+  display: flex;
+  gap: 2rem;
+}
+.card-tokenomics {
+  /* background-color: #7ccafd; */
+  background-color: #62bcf8;
+  position: relative;
+  box-shadow: 8px 8px 0 0 #0087e0;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 16rem;
+  height: 8rem;
+  color: #fff;
+  padding: 10px 0;
+}
+.card-tokenomics-full-width {
+  background-color: #62bcf8;
+  position: relative;
+  box-shadow: 8px 8px 0 0 #0087e0;
+
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  padding: 10px 0;
+}
+.card-toke-text-title {
+  color: rgb(200, 0, 0);
+}
+.dots-tokenomics,
+.dots-tokenomics-2,
+.dots-tokenomics-3,
+.dots-tokenomics-4 {
+  background-color: #00eeff;
+  width: 0.5rem;
+  height: 0.5rem;
+  position: absolute;
+}
+.dots-tokenomics {
+  top: 0.3rem;
+  left: 0.3rem;
+}
+.dots-tokenomics-2 {
+  top: 0.3rem;
+  right: 0.3rem;
+}
+.dots-tokenomics-3 {
+  bottom: 0.3rem;
+  left: 0.3rem;
+}
+.dots-tokenomics-4 {
+  bottom: 0.3rem;
+  right: 0.3rem;
+}
+.tokenomics-list-distribution {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.ul-distribution-list {
+  list-style: disc;
+  width: 100%;
+  padding-left: 50px;
+  line-height: 2;
+}
+.tea-img-tokenomics {
+  width: 100px;
+  position: absolute;
+  right: 1rem;
+}
+.tokenomics-fan-img {
+  width: 100px;
+  position: absolute;
+  right: 1rem;
+}
+.footer-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.contact-mail {
+  text-align: center;
+  font-size: small;
+  margin-top: -1rem;
+  margin-bottom: 1rem;
+  color: #bd2c27;
+}
+#dexscreener-embed {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  position: relative;
+  width: 100%;
+  padding-bottom: 125%;
+}
+@media (min-width: 1400px) {
+  #dexscreener-embed {
+    padding-bottom: 65%;
+  }
+}
+#dexscreener-embed iframe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border: 0;
+}
+
+@media (max-width: 319px) {
+  .img-1-how img,
+  .img-2-how img,
+  .img-3-how img,
+  .img-4-how img {
+    width: 16rem;
+    height: 10rem;
+    opacity: 1;
+  }
+}
+@media (max-width: 330px) {
+  .moving-cat-gif {
+    /* top: 7.3rem !important;
+    width: 18rem !important;
+    height: 10rem !important; */
+    top: 9.3rem !important;
+    width: 18rem !important;
+    height: 8rem !important;
+    right: 0rem !important;
+  }
+  .twitter-pixelated {
+    left: 0.25rem !important;
+    width: 2rem !important;
+    height: 2rem !important;
+    top: -1rem !important;
+  }
+  .twitter-card {
+    padding: 20px !important;
+    margin-top: 36rem !important;
+  }
+  .contract-address {
+    max-width: 240px !important;
+  }
+  .text-link-lifi {
+    position: absolute;
+    bottom: 16.5rem;
+    right: 22%;
+    font-size: 12px;
+  }
+  .app-link-apple {
+    left: 14%;
+    cursor: pointer;
+    font-size: 12px;
+    top: 29.3%;
+  }
+  .app-link-android {
+    left: 48%;
+    cursor: pointer;
+    font-size: 12px;
+    top: 29.3%;
+  }
+}
+@media (min-width: 325px) and (max-width: 550px) {
+  .moving-cat-gif {
+    width: 335px;
+    position: absolute;
+    height: 9rem;
+    right: 0rem;
+    top: 12.5rem;
+    z-index: 1;
+  }
+  .text-link-lifi {
+    position: absolute;
+    bottom: 16.5rem;
+    right: 28%;
+    font-size: 12px;
+  }
+  .app-link-apple {
+    left: 21%;
+    cursor: pointer;
+    font-size: 12px;
+    top: 29.3%;
+  }
+  .app-link-android {
+    left: 48%;
+    cursor: pointer;
+    font-size: 12px;
+    top: 29.3%;
+  }
+}
+@media (max-width: 550px) {
+  .banner-main-bg {
+    height: 100%;
+  }
+
+  .dex_tool img {
+    margin-top: 30px;
+  }
+  .dex_tool {
+    margin-top: -2rem;
+    margin-bottom: 1rem;
+  }
+  .year-logo {
+    display: none;
+  }
+  .contact-mail {
+    margin-top: 0rem;
+  }
+  .banner-gif {
+    width: 100%;
+    height: 100%;
+    margin-bottom: -5rem;
+    transform: translateX(-50%);
+  }
+  .lmao-img-text {
+    position: absolute;
+    top: 12rem;
+    width: 5rem;
+    left: 3rem;
+  }
+  .text-banner-img {
+    position: absolute;
+    top: 11rem;
+    right: 4rem;
+    width: 3rem !important;
+  }
+  .arrow-section-2-img {
+    display: none;
+  }
+  .fire-gif {
+    right: 1rem;
+    top: -11rem;
+    width: 9rem;
+    height: 11rem;
+  }
+  .section-2-text {
+    font-size: 12px;
+  }
+  .section-2 {
+    padding-bottom: 0px !important;
+  }
+  .text-section-3 {
+    top: 16rem;
+    left: 0;
+    width: 100%;
+    font-size: 12px;
+  }
+  .twitter-card {
+    margin-top: 31rem;
+    width: 100%;
+    margin-bottom: 3rem;
+  }
+  .twitter-pixelated {
+    left: -0.75rem;
+    width: 2rem;
+    height: 2rem;
+    top: 1rem;
+  }
+  .typing-text {
+    font-size: 12px;
+  }
+  .moving-cat-gif {
+    top: 8.3rem;
+  }
+  .section-3 {
+    padding-top: 0px !important;
+  }
+  .fade-animation {
+    height: 16rem;
+  }
+  .kitgun-img {
+    left: 37%;
+    top: 2rem;
+    width: 23%;
+    /* z-index: 1 !important; */
+    opacity: 1 !important;
+  }
+  .section-4 {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .coin-img-bg,
+  .coin-img2-bg {
+    width: 3rem;
+  }
+  .coin-img2-bg {
+    left: 2rem;
+  }
+  .coin-img-bg {
+    right: 4rem;
+  }
+  .running-main-img {
+    transform: rotate(0deg) !important;
+  }
+  .coaster-img {
+    width: 100%;
+  }
+  .section-4-flex {
+    display: block;
+  }
+  .section-4-text {
+    font-size: 12px;
+    width: 100%;
+  }
+  .text-p-section-4 {
+    text-align: center;
+    font-size: 14px;
+  }
+  .buy-btn-inner {
+    margin: auto;
+    height: 39px;
+    width: 120px;
+    transform: rotate(0deg);
+  }
+  .how-to-buy-flex {
+    display: block;
+    gap: 3rem;
+  }
+  .contract-add {
+    padding-top: 0rem !important;
+    font-size: 10px;
+    text-align: center;
+  }
+  .how-to-buy-frames {
+    display: block;
+    position: initial;
+    text-align: center;
+    position: initial;
+    top: 0;
+    /* width: fit-content; */
+    left: 19rem;
+    /* flex-wrap: wrap; */
+  }
+  .laser-eyes-gif {
+    width: 9rem;
+    height: 9rem;
+    margin-top: 2.3rem;
+    margin-left: 6rem;
+  }
+  .img-2-how img,
+  .img-3-how img,
+  .img-4-how img {
+    margin-top: 10px;
+  }
+  .tokenomics-banner-img {
+    display: none;
+  }
+  .tokenomics-banner-img-mobile {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 2rem;
+  }
+  .tokenomics-flex {
+    display: block;
+    padding: 0rem 0 0rem 0;
+  }
+  .tokenomics-first-row {
+    display: block;
+    margin: auto;
+    margin-left: 0rem;
+  }
+  .tokenomics-right {
+    display: block;
+    margin: auto;
+  }
+  .card-tokenomics,
+  .card-tokenomics-full-width {
+    margin-bottom: 1.5rem;
+    width: 100%;
+  }
+  .tea-img-tokenomics {
+    right: 0;
+    top: -4rem;
+  }
+  .ul-distribution-list {
+    padding-left: 30px;
+    font-size: 11px;
+  }
+  .tokenomics-fan-img {
+    right: 0;
+    bottom: -2rem;
+  }
+  .contract-address {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 300px;
+  }
+  .section-5-main {
+    top: -3rem;
+  }
+  .footer-flex {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+  }
+  .search-btns {
+    margin-top: 20px;
+  }
+  .footer-desc {
+    padding: 0 20px;
+  }
+  .cry-cat-gif {
+    left: 0.2rem;
+  }
+  .logo-footer {
+    padding-bottom: 12px;
+  }
+  .blackrockimg-bg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(https://res.cloudinary.com/dbtsrjssc/image/upload/v1712228138/blakrok-office-new_1_1_q4kv0q.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .colab-img {
+    height: 14rem;
+  }
+  .cta-btn-buys {
+    flex-wrap: wrap;
+    padding-top: 0 !important;
+  }
+  .buy-btn-tokenomics {
+    margin-top: 10px;
+  }
+}
+@media (max-width: 990px) {
+  .navbar-bg {
+    height: 100%;
+  }
+}
+
+@media (max-width: 880px) {
+  .year-logo {
+    width: 80%;
+  }
+
+  .social-links-mobile {
+    display: block;
+    margin-left: auto;
+    color: #fff;
+    padding: 20px;
+    cursor: pointer;
+  }
+
+  .social-links {
+    display: none;
+    background-color: #1c8de4;
+  }
+  .social-links-mobile {
+    margin-top: 0rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .how-to-buy-flex {
+    margin-left: 0rem;
+  }
+  .buy-btn-tokenomics .buybtn-text {
+    font-size: 10px;
+  }
+  .buy-btn-tokenomics {
+    font-size: 10px;
+  }
+  .text-link {
+    position: absolute;
+    bottom: 16.7rem;
+    right: 44%;
+    font-size: 10px;
+  }
+}
+@media (min-width: 550px) and (max-width: 880px) {
+  .lmao-img-text {
+    left: 10rem;
+    top: 16rem;
+  }
+  .banner-gif {
+    left: 50%;
+    transform: translateX(-70%);
+    transition: left 0.3s ease;
+  }
+  .arrow-section-2-img {
+    display: none;
+  }
+  .text-section-3 {
+    left: 0;
+    width: 100%;
+  }
+  .twitter-card {
+    padding: 4rem;
+    width: 100%;
+    margin-top: 40rem;
+  }
+  .twitter-box-profile {
+    font-size: 21px;
+  }
+  .twitter-box-username {
+    font-size: 16px;
+  }
+  .tweet-twitter-box {
+    font-size: 20px;
+  }
+  .kitgun-img {
+    top: 5rem;
+  }
+  .fade-animation {
+    height: 31rem;
+  }
+  .running-main-img {
+    width: 100%;
+  }
+  .section-4-text {
+    font-size: 14px;
+  }
+  .text-p-section-4 {
+    font-size: 16px;
+  }
+  .section-4-list {
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  .section-5-main {
+    top: -1rem;
+  }
+  .buy-btn-inner {
+    height: 43px;
+    transform: rotate(0deg);
+    width: 132px;
+  }
+  .how-to-buy-flex {
+    margin-left: 1rem;
+  }
+  .how-to-buy-frames {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: -3rem;
+  }
+  .text-link-lifi {
+    position: absolute;
+    bottom: 4rem;
+    right: 31%;
+    font-size: 8px;
+  }
+  .app-link-apple {
+    left: 5%;
+    cursor: pointer;
+    font-size: 7px;
+    bottom: 3.2rem;
+  }
+  .app-link-android {
+    left: 13%;
+    cursor: pointer;
+    font-size: 7px;
+    bottom: 3.2rem;
+  }
+  .img-1-how img,
+  .img-2-how img,
+  .img-3-how img,
+  .img-4-how img {
+    width: 10rem;
+    height: 6rem;
+    /* opacity: 0.5454; */
+    opacity: 1;
+  }
+  .section-5 {
+    padding-bottom: 0;
+  }
+  .card-tokenomics {
+    width: 10rem;
+    height: 7rem;
+    font-size: 12px;
+  }
+  .card-tokenomics-full-width {
+    font-size: 12px;
+  }
+  .ul-distribution-list li p {
+    margin-bottom: 0 !important;
+  }
+  .tokenomics-banner-img {
+    width: 7rem;
+    height: 30rem;
+  }
+  .tokenomics-flex {
+    padding: 4rem 0 0rem 0;
+
+    gap: 1rem;
+  }
+  .colab-img {
+    height: 30rem;
+  }
+  .cry-cat-gif {
+    width: 9rem;
+    height: 7rem !important;
+    /* width: 2rem; */
+    position: absolute;
+    top: -6rem;
+    left: -2rem;
+  }
+  .text-link {
+    position: absolute;
+    bottom: 4rem;
+    right: 35%;
+    font-size: 7px;
+  }
+}
+@media (min-width: 880px) and (max-width: 990px) {
+  .arrow-section-2-img {
+    left: 54%;
+  }
+  .text-section-3 {
+    width: 50rem;
+  }
+  .text-section-3 {
+    width: 27rem;
+  }
+  .twitter-card {
+    width: 20rem;
+  }
+  .year-logo {
+    top: -24% !important;
+  }
+  .fade-animation {
+    height: 35rem;
+  }
+  .section-5-main {
+    top: -1rem;
+  }
+  .buy-btn-inner {
+    height: 43px;
+    transform: rotate(0deg);
+  }
+  .how-to-buy-flex {
+    margin-left: 1rem;
+  }
+  .how-to-buy-frames {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: -3rem;
+  }
+  .img-1-how img,
+  .img-2-how img,
+  .img-3-how img,
+  .img-4-how img {
+    width: 10rem;
+    height: 6rem;
+    /* opacity: 0.5454; */
+    opacity: 1;
+  }
+  .section-5 {
+    padding-bottom: 0;
+  }
+  .card-tokenomics {
+    width: 10rem;
+    height: 7rem;
+    font-size: 12px;
+  }
+  .card-tokenomics-full-width {
+    font-size: 12px;
+  }
+  .ul-distribution-list li p {
+    margin-bottom: 0 !important;
+  }
+  .tokenomics-banner-img {
+    width: 7rem;
+    height: 30rem;
+  }
+  .tokenomics-flex {
+    padding: 9rem 0 0rem 0;
+    gap: 1rem;
+  }
+}
+@media (min-width: 990px) and (max-width: 1250px) {
+  .section-2-text {
+    width: 22rem;
+  }
+  .arrow-section-2-img {
+    top: 5rem;
+    left: 35%;
+  }
+  .text-section-3 {
+    width: 30rem;
+    top: 26rem;
+    left: 52%;
+  }
+  .twitter-card {
+    margin-top: 23rem;
+  }
+  .fire-gif {
+    right: 1rem;
+    top: -17rem;
+  }
+  .moving-cat-gif {
+    right: -1rem;
+    top: 15.5rem;
+  }
+  .kitgun-img {
+    left: 37%;
+    top: 6rem;
+    width: 23%;
+    /* z-index: -1; */
+    opacity: 0.5;
+  }
+  .section-4 {
+    padding-top: 0;
+  }
+  .buy-btn-inner {
+    height: 45px;
+    width: 139px;
+  }
+  .section-5-main {
+    top: -1rem;
+  }
+  .how-to-buy-frames {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+  .img-1-how img,
+  .img-2-how img,
+  .img-3-how img,
+  .img-4-how img {
+    width: 12rem;
+    height: 8rem;
+    /* opacity: 0.5454; */
+    opacity: 1;
+  }
+  .text-link {
+    position: absolute;
+    bottom: 5rem;
+  }
+  .text-link-lifi {
+    position: absolute;
+    bottom: 5rem;
+    right: 32%;
+    font-size: 10px;
+  }
+  .app-link-apple {
+    bottom: 4rem;
+    left: 9%;
+    cursor: pointer;
+    z-index: 2;
+    font-size: 8px;
+  }
+  .app-link-android {
+    left: 16%;
+    cursor: pointer;
+    font-size: 8px;
+    bottom: 4rem;
+  }
+  .cry-cat-gif {
+    width: 9rem;
+    height: 7rem !important; /* width: 2rem; */
+    position: absolute;
+    top: -5.4rem;
+    left: -0.9rem;
+    transform: rotate(7deg);
+  }
+  .buy-btn-tokenomics .buybtn-text {
+    font-size: 10px;
+  }
+}
+@media (min-width: 1165px) and (max-width: 1366px) {
+  .text-link-lifi {
+    position: absolute;
+    bottom: 6rem;
+    right: 29%;
+    font-size: 11px;
+  }
+  .text-link {
+    position: absolute;
+    bottom: 6rem;
+    right: 35%;
+  }
+  .app-link-apple {
+    bottom: 4.7rem;
+    left: 0%;
+  }
+  .app-link-android {
+    bottom: 4.7rem;
+    left: 9%;
+  }
+}
