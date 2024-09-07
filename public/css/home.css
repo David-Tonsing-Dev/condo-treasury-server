@@ -125,7 +125,7 @@
   justify-content: space-between;
 }
 .banner-main-bg {
-  background-image: url(./images/banner/background.svg);
+  background-image: url(../images/banner/background.svg);
   background-repeat: no-repeat;
   background-position: center top 1rem;
   background-size: cover;
