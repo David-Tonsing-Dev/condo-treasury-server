@@ -49,9 +49,9 @@ app.get("/ethereum", async (req, res) => {
   });
 });
 
-app.get("/polygon", async (req, res) => {
+app.get("/aurusx", async (req, res) => {
   const resp = await axios.get(
-    "https://pro-api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=matic-network",
+    "https://pro-api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=aurusx",
     {
       headers: {
         "x-cg-pro-api-key": process.env.COINGECKO_KEY,
