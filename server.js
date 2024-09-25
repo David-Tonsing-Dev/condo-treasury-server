@@ -49,6 +49,23 @@ app.get("/ethereum", async (req, res) => {
   });
 });
 
+app.get("/polygon", async (req, res) => {
+  const resp = await axios.get(
+    "https://pro-api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=matic-network",
+    {
+      headers: {
+        "x-cg-pro-api-key": process.env.COINGECKO_KEY,
+        "Access-Control-Allow-Origin": "*",
+      },
+    }
+  );
+
+  return res.status(200).json({
+    success: true,
+    polygonDetail: resp.data[0],
+  });
+});
+
 app.get("/home", (req, res) => {
   res.render("pages/home");
 });
