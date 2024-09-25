@@ -62,7 +62,7 @@ app.get("/aurusx", async (req, res) => {
 
   return res.status(200).json({
     success: true,
-    polygonDetail: resp.data[0],
+    aurusxDetail: resp.data[0],
   });
 });
 
