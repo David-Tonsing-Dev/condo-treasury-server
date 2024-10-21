@@ -83,6 +83,20 @@ app.get("/condo-liquidityPool", async (req, res) => {
   });
 });
 
+app.get("/:coinid", async (req, res) => {
+  const resp = await axios.get(
+    `https://pro-api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${req.params.coinid}`,
+    {
+      headers: {
+        "x-cg-pro-api-key": process.env.COINGECKO_KEY,
+        "Access-Control-Allow-Origin": "*",
+      },
+    }
+  );
+
+  return res.status(200).json({ success: true, detail: resp.data[0] });
+});
+
 app.get("/home", (req, res) => {
   res.render("pages/home");
 });
