@@ -4,6 +4,7 @@ const cors = require("cors");
 const axios = require("axios");
 
 const condoRoute = require("./routes/condoRoute");
+const portfolioRoute = require("./routes/portfolioRoute");
 
 const app = express();
 const PORT = process.env.PORT;
@@ -14,6 +15,7 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 
 app.use("/api/condo", condoRoute);
+app.use("/api/portfolio", portfolioRoute);
 
 app.get("/", (req, res) => {
   res.render("pages/landing");
