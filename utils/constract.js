@@ -24,8 +24,15 @@ const getPolyBalance = async (balance) => {
   return polygonWeb3.utils.fromWei(balance, "ether");
 };
 
+const getBaseTokenBalance = async (ABI, address) => {
+  const contractAddress = new baseWeb3.eth.Contract(ABI, condoContractAddress);
+  const balance = await contractAddress.methods.balanceOf(address).call();
+  return balance;
+};
+
 module.exports = {
   getBaseBalance,
   getEtherBalance,
   getPolyBalance,
+  getBaseTokenBalance,
 };

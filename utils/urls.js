@@ -27,4 +27,35 @@ const getMarketData = async (token) => {
   };
 };
 
-module.exports = { getMarketData };
+const getHistoricalTokenPrice = async (token) => {
+  const resp = await axios.get(
+    `${COINGECKO_URL}/coins/${token}/market_chart?vs_currency=usd&days=1`,
+    options
+  );
+
+  return resp.data;
+};
+
+const fetchTokenHistoricalPrice = async (tokens) => {
+  try {
+    const promises = tokens.map((token) =>
+      axios.get(
+        `${COINGECKO_URL}/coins/${token}/market_chart?vs_currency=usd&days=1`,
+        options
+      )
+    );
+
+    const responses = await Promise.all(promises);
+    const tokenData = responses.map((resp) => resp.data);
+    return tokenData;
+  } catch (error) {
+    console.error("Error fetching token data:", error.message);
+    throw error;
+  }
+};
+
+module.exports = {
+  getMarketData,
+  getHistoricalTokenPrice,
+  fetchTokenHistoricalPrice,
+};

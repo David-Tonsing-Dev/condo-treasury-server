@@ -1,31 +1,21 @@
-const { Web3 } = require("web3");
-const axios = require("axios");
 const {
   getBaseBalance,
   getEtherBalance,
   getPolyBalance,
+  getBaseTokenBalance,
 } = require("../utils/constract");
-const { getMarketData } = require("../utils/urls");
 const {
-  get24hPrice,
-  get30dPrice,
-  get7dPrice,
-  get24hMarketCap,
-  getTotal,
-} = require("../helpers/priceChange");
+  getMarketData,
+  getHistoricalTokenPrice,
+  fetchTokenHistoricalPrice,
+} = require("../utils/urls");
+const { getTotal } = require("../helpers/priceChange");
 const { condoABI } = require("../utils/constants/abis");
 const {
   addressToCheck,
   condoAirdropAddress,
 } = require("../utils/constants/addresses");
-
-const COINGECKO_URL = "https://pro-api.coingecko.com/api/v3";
-const options = {
-  headers: {
-    "x-cg-pro-api-key": process.env.COINGECKO_KEY,
-    "Access-Control-Allow-Origin": "*",
-  },
-};
+const { walletValue } = require("../helpers/walletValue");
 
 const getPortfolioData = async (req, res) => {
   try {
@@ -69,7 +59,7 @@ const getPortfolioData = async (req, res) => {
       },
     ];
 
-    const portfolio24h = getTotal(wallet24hBalance, get24hPrice);
+    const portfolio24h = getTotal(wallet24hBalance);
 
     const wallet7dBalance = [
       {
@@ -90,7 +80,7 @@ const getPortfolioData = async (req, res) => {
       },
     ];
 
-    const portfolio7d = getTotal(wallet7dBalance, get7dPrice);
+    const portfolio7d = getTotal(wallet7dBalance);
 
     const wallet30dBalance = [
       {
@@ -111,7 +101,7 @@ const getPortfolioData = async (req, res) => {
       },
     ];
 
-    const portfolio30d = getTotal(wallet30dBalance, get30dPrice);
+    const portfolio30d = getTotal(wallet30dBalance);
 
     const wallet24hMarketCap = [
       {
@@ -132,7 +122,7 @@ const getPortfolioData = async (req, res) => {
       },
     ];
 
-    const portfolioMarketCap24h = getTotal(wallet24hMarketCap, get24hMarketCap);
+    const portfolioMarketCap24h = getTotal(wallet24hMarketCap);
 
     return res.json({
       status: true,
@@ -154,6 +144,59 @@ const getPortfolioData = async (req, res) => {
 
 const getPortfolioHistorical = async (req, res) => {
   try {
+    const walletCondoBalance = await getBaseBalance(condoABI, addressToCheck);
+    const walletAirdropBalance = await getBaseBalance(
+      condoABI,
+      condoAirdropAddress
+    );
+    const walletEtherBalance = await getEtherBalance(addressToCheck);
+    const walletAurusBalance = await getPolyBalance(25417);
+
+    const condoMarketData = await getMarketData("condo");
+    const ethMarketData = await getMarketData("ethereum");
+    const aurusxMarketData = await getMarketData("aurusx");
+    const walletCondoBalanceUSD =
+      walletCondoBalance * condoMarketData.current_price;
+    const walletAirdropBalanceUSD =
+      walletAirdropBalance * condoMarketData.current_price;
+    const walletEtherBalanceUSD =
+      walletEtherBalance * ethMarketData.current_price;
+    const walletAurusBalanceUSD =
+      walletAurusBalance * aurusxMarketData.current_price;
+
+    const condoHistoricalPrice = await getHistoricalTokenPrice("condo");
+    const historicalCondoBalance = walletValue(
+      condoHistoricalPrice.prices,
+      walletCondoBalanceUSD
+    );
+
+    const historicalAirdropBalance = walletValue(
+      condoHistoricalPrice.prices,
+      walletAirdropBalanceUSD
+    );
+
+    const etherHistoricalPrice = await getHistoricalTokenPrice("ethereum");
+    const historicalEtherBalance = walletValue(
+      etherHistoricalPrice.prices,
+      walletEtherBalanceUSD
+    );
+
+    const aurusHistoricalPrice = await getHistoricalTokenPrice("aurusx");
+    const historicalAurusBalance = walletValue(
+      aurusHistoricalPrice.prices,
+      walletAurusBalanceUSD
+    );
+
+    return res.status(200).json({
+      status: true,
+      portfolioHistorical: {
+        historicalCondoBalance,
+        historicalEtherBalance,
+        historicalAurusBalance,
+        historicalAirdropBalance:
+          walletAirdropBalanceUSD <= 0 ? null : historicalAirdropBalance,
+      },
+    });
   } catch (err) {
     return res.status(500).json({
       status: false,
