@@ -10,7 +10,7 @@ const options = {
 
 const getMarketData = async (token) => {
   const resp = await axios(
-    `${COINGECKO_URL}/coins/condo?market_data=true&community_data=false&developer_data=false`,
+    `${COINGECKO_URL}/coins/${token}?market_data=true&community_data=false&developer_data=false`,
     options
   );
 
@@ -46,8 +46,29 @@ const fetchTokenHistoricalPrice = async (tokens) => {
     );
 
     const responses = await Promise.all(promises);
-    const tokenData = responses.map((resp) => resp.data);
-    return tokenData;
+
+    const timestampData = responses[0].data.prices.map(
+      ([timestamp, _]) => timestamp
+    );
+
+    const alignedData = tokens.map((token, index) => {
+      const prices = responses[index].data.prices;
+      const tokenData = prices.map(([timestamp, price]) => {
+        const closestTimestamp = timestampData.find(
+          (t) => Math.abs(t - timestamp) < 60000
+        );
+        return {
+          x: closestTimestamp,
+          y: closestTimestamp ? price : null,
+        };
+      });
+
+      return {
+        name: token,
+        data: tokenData,
+      };
+    });
+    return alignedData;
   } catch (error) {
     console.error("Error fetching token data:", error.message);
     throw error;

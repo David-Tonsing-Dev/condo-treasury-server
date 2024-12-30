@@ -3,6 +3,7 @@ const {
   getEtherBalance,
   getPolyBalance,
   getBaseTokenBalance,
+  getPolygonBalance,
 } = require("../utils/constract");
 const {
   getMarketData,
@@ -10,10 +11,11 @@ const {
   fetchTokenHistoricalPrice,
 } = require("../utils/urls");
 const { getTotal } = require("../helpers/priceChange");
-const { condoABI } = require("../utils/constants/abis");
+const { condoABI, polytradeABI } = require("../utils/constants/abis");
 const {
   addressToCheck,
   condoAirdropAddress,
+  polytradeAddress,
 } = require("../utils/constants/addresses");
 const { walletValue } = require("../helpers/walletValue");
 
@@ -27,9 +29,15 @@ const getPortfolioData = async (req, res) => {
     const walletEtherBalance = await getEtherBalance(addressToCheck);
     const walletAurusBalance = await getPolyBalance(25417);
 
+    const walletPolygonBalance = await getPolygonBalance(
+      polytradeABI,
+      polytradeAddress
+    );
+
     const condoMarketData = await getMarketData("condo");
     const ethMarketData = await getMarketData("ethereum");
     const aurusxMarketData = await getMarketData("aurusx");
+    const polytradeMarketData = await getMarketData("polytrade");
 
     const walletCondoBalanceUSD =
       walletCondoBalance * condoMarketData.current_price;
@@ -39,6 +47,8 @@ const getPortfolioData = async (req, res) => {
       walletEtherBalance * ethMarketData.current_price;
     const walletAurusBalanceUSD =
       walletAurusBalance * aurusxMarketData.current_price;
+    const walletPolytradeBalanceUSD =
+      walletPolygonBalance * polytradeMarketData.current_price;
 
     const wallet24hBalance = [
       {
@@ -55,7 +65,11 @@ const getPortfolioData = async (req, res) => {
       },
       {
         balanceUSD: walletAurusBalanceUSD,
-        changePercentage: aurusxMarketData.price_change_percentage_7d,
+        changePercentage: aurusxMarketData.price_change_percentage_24h,
+      },
+      {
+        balanceUSD: walletPolytradeBalanceUSD,
+        changePercentage: polytradeMarketData.price_change_percentage_24h,
       },
     ];
 
@@ -78,6 +92,10 @@ const getPortfolioData = async (req, res) => {
         balanceUSD: walletAurusBalanceUSD,
         changePercentage: aurusxMarketData.price_change_percentage_7d,
       },
+      {
+        balanceUSD: walletPolytradeBalanceUSD,
+        changePercentage: polytradeMarketData.price_change_percentage_7d,
+      },
     ];
 
     const portfolio7d = getTotal(wallet7dBalance);
@@ -99,6 +117,10 @@ const getPortfolioData = async (req, res) => {
         balanceUSD: walletAurusBalanceUSD,
         changePercentage: aurusxMarketData.price_change_percentage_30d,
       },
+      {
+        balanceUSD: walletPolytradeBalanceUSD,
+        changePercentage: polytradeMarketData.price_change_percentage_30d,
+      },
     ];
 
     const portfolio30d = getTotal(wallet30dBalance);
@@ -119,6 +141,10 @@ const getPortfolioData = async (req, res) => {
       {
         balanceUSD: walletAurusBalanceUSD,
         changePercentage: aurusxMarketData.market_cap_change_percentage_24h,
+      },
+      {
+        balanceUSD: walletPolytradeBalanceUSD,
+        changePercentage: polytradeMarketData.market_cap_change_percentage_24h,
       },
     ];
 
@@ -151,10 +177,15 @@ const getPortfolioHistorical = async (req, res) => {
     );
     const walletEtherBalance = await getEtherBalance(addressToCheck);
     const walletAurusBalance = await getPolyBalance(25417);
+    const walletPolygonBalance = await getPolygonBalance(
+      polytradeABI,
+      polytradeAddress
+    );
 
     const condoMarketData = await getMarketData("condo");
     const ethMarketData = await getMarketData("ethereum");
     const aurusxMarketData = await getMarketData("aurusx");
+    const polytradeMarketData = await getMarketData("polytrade");
     const walletCondoBalanceUSD =
       walletCondoBalance * condoMarketData.current_price;
     const walletAirdropBalanceUSD =
@@ -163,6 +194,8 @@ const getPortfolioHistorical = async (req, res) => {
       walletEtherBalance * ethMarketData.current_price;
     const walletAurusBalanceUSD =
       walletAurusBalance * aurusxMarketData.current_price;
+    const walletPolytradeBalanceUSD =
+      walletPolygonBalance * polytradeMarketData.current_price;
 
     const condoHistoricalPrice = await getHistoricalTokenPrice("condo");
     const historicalCondoBalance = walletValue(
@@ -187,12 +220,19 @@ const getPortfolioHistorical = async (req, res) => {
       walletAurusBalanceUSD
     );
 
+    const polytradeHistoricalPrice = await getHistoricalTokenPrice("polytrade");
+    const historicalPolytradeBalance = walletValue(
+      polytradeHistoricalPrice.prices,
+      walletPolytradeBalanceUSD
+    );
+
     return res.status(200).json({
       status: true,
       portfolioHistorical: {
         historicalCondoBalance,
         historicalEtherBalance,
         historicalAurusBalance,
+        historicalPolytradeBalance,
         historicalAirdropBalance:
           walletAirdropBalanceUSD <= 0 ? null : historicalAirdropBalance,
       },
