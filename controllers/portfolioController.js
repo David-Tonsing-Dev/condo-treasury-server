@@ -183,56 +183,80 @@ const getPortfolioHistorical = async (req, res) => {
     );
 
     const condoMarketData = await getMarketData("condo");
-    const ethMarketData = await getMarketData("ethereum");
-    const aurusxMarketData = await getMarketData("aurusx");
-    const polytradeMarketData = await getMarketData("polytrade");
-    const walletCondoBalanceUSD =
-      walletCondoBalance * condoMarketData.current_price;
+    // const ethMarketData = await getMarketData("ethereum");
+    // const aurusxMarketData = await getMarketData("aurusx");
+    // const polytradeMarketData = await getMarketData("polytrade");
+    // const walletCondoBalanceUSD =
+    //   walletCondoBalance * condoMarketData.current_price;
     const walletAirdropBalanceUSD =
       walletAirdropBalance * condoMarketData.current_price;
-    const walletEtherBalanceUSD =
-      walletEtherBalance * ethMarketData.current_price;
-    const walletAurusBalanceUSD =
-      walletAurusBalance * aurusxMarketData.current_price;
-    const walletPolytradeBalanceUSD =
-      walletPolygonBalance * polytradeMarketData.current_price;
+    // const walletEtherBalanceUSD =
+    //   walletEtherBalance * ethMarketData.current_price;
+    // const walletAurusBalanceUSD =
+    //   walletAurusBalance * aurusxMarketData.current_price;
+    // const walletPolytradeBalanceUSD =
+    //   walletPolygonBalance * polytradeMarketData.current_price;
 
     const condoHistoricalPrice = await getHistoricalTokenPrice("condo");
     const historicalCondoBalance = walletValue(
       condoHistoricalPrice.prices,
-      walletCondoBalanceUSD
+      walletCondoBalance
     );
 
     const historicalAirdropBalance = walletValue(
       condoHistoricalPrice.prices,
-      walletAirdropBalanceUSD
+      walletAirdropBalance
     );
 
     const etherHistoricalPrice = await getHistoricalTokenPrice("ethereum");
     const historicalEtherBalance = walletValue(
       etherHistoricalPrice.prices,
-      walletEtherBalanceUSD
+      walletEtherBalance
     );
 
     const aurusHistoricalPrice = await getHistoricalTokenPrice("aurusx");
     const historicalAurusBalance = walletValue(
       aurusHistoricalPrice.prices,
-      walletAurusBalanceUSD
+      walletAurusBalance
     );
 
     const polytradeHistoricalPrice = await getHistoricalTokenPrice("polytrade");
     const historicalPolytradeBalance = walletValue(
       polytradeHistoricalPrice.prices,
-      walletPolytradeBalanceUSD
+      walletPolygonBalance
+    );
+
+    const datasets = {
+      condo: historicalCondoBalance,
+      ether: historicalEtherBalance,
+      aurus: historicalAurusBalance,
+      polytrade: historicalPolytradeBalance,
+    };
+
+    const shortestDataset = Object.values(datasets).reduce(
+      (shortest, current) =>
+        current.length < shortest.length ? current : shortest
+    );
+
+    const timestamps = shortestDataset.map((row) => row[0]);
+
+    const alignedDatasets = Object.fromEntries(
+      Object.entries(datasets).map(([key, data]) => [
+        key,
+        timestamps.map((timestamp, index) => {
+          const row = data[index] || [];
+          return [timestamp, ...row.slice(1)];
+        }),
+      ])
     );
 
     return res.status(200).json({
       status: true,
       portfolioHistorical: {
-        historicalCondoBalance,
-        historicalEtherBalance,
-        historicalAurusBalance,
-        historicalPolytradeBalance,
+        historicalCondoBalance: alignedDatasets.condo,
+        historicalEtherBalance: alignedDatasets.ether,
+        historicalAurusBalance: alignedDatasets.aurus,
+        historicalPolytradeBalance: alignedDatasets.polytrade,
         historicalAirdropBalance:
           walletAirdropBalanceUSD <= 0 ? null : historicalAirdropBalance,
       },
