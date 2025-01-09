@@ -4,6 +4,8 @@ const {
   getPolyBalance,
   getBaseTokenBalance,
   getPolygonBalance,
+  getEtherTokenBalance,
+  getBnBBalance,
 } = require("../utils/constract");
 const {
   getMarketData,
@@ -11,11 +13,18 @@ const {
   fetchTokenHistoricalPrice,
 } = require("../utils/urls");
 const { getTotal } = require("../helpers/priceChange");
-const { condoABI, polytradeABI } = require("../utils/constants/abis");
+const {
+  condoABI,
+  polytradeABI,
+  mapleABI,
+  brickkenABI,
+} = require("../utils/constants/abis");
 const {
   addressToCheck,
   condoAirdropAddress,
   polytradeAddress,
+  mapleAddress,
+  brickkenAddress,
 } = require("../utils/constants/addresses");
 const { walletValue } = require("../helpers/walletValue");
 
@@ -27,6 +36,14 @@ const getPortfolioData = async (req, res) => {
       condoAirdropAddress
     );
     const walletEtherBalance = await getEtherBalance(addressToCheck);
+    const walletBrickkenBalance = await getBnBBalance(
+      brickkenABI,
+      addressToCheck
+    );
+    const walletMapleBalance = await getEtherTokenBalance(
+      mapleABI,
+      addressToCheck
+    );
     const walletAurusBalance = await getPolyBalance(25417);
 
     const walletPolygonBalance = await getPolygonBalance(
@@ -38,6 +55,8 @@ const getPortfolioData = async (req, res) => {
     const ethMarketData = await getMarketData("ethereum");
     const aurusxMarketData = await getMarketData("aurusx");
     const polytradeMarketData = await getMarketData("polytrade");
+    const mapleMarketData = await getMarketData("maple");
+    const brickkenMarketData = await getMarketData("brickken");
 
     const walletCondoBalanceUSD =
       walletCondoBalance * condoMarketData.current_price;
@@ -49,6 +68,10 @@ const getPortfolioData = async (req, res) => {
       walletAurusBalance * aurusxMarketData.current_price;
     const walletPolytradeBalanceUSD =
       walletPolygonBalance * polytradeMarketData.current_price;
+    const walletMapleBalanceUSD =
+      walletMapleBalance * mapleMarketData.current_price;
+    const walletBrickkenBalanceUSD =
+      walletBrickkenBalance * brickkenMarketData.current_price;
 
     const wallet24hBalance = [
       {
@@ -70,6 +93,14 @@ const getPortfolioData = async (req, res) => {
       {
         balanceUSD: walletPolytradeBalanceUSD,
         changePercentage: polytradeMarketData.price_change_percentage_24h,
+      },
+      {
+        balanceUSD: walletMapleBalanceUSD,
+        changePercentage: mapleMarketData.price_change_percentage_24h,
+      },
+      {
+        balanceUSD: walletBrickkenBalanceUSD,
+        changePercentage: brickkenMarketData.price_change_percentage_24h,
       },
     ];
 
@@ -96,6 +127,14 @@ const getPortfolioData = async (req, res) => {
         balanceUSD: walletPolytradeBalanceUSD,
         changePercentage: polytradeMarketData.price_change_percentage_7d,
       },
+      {
+        balanceUSD: walletMapleBalanceUSD,
+        changePercentage: mapleMarketData.price_change_percentage_7d,
+      },
+      {
+        balanceUSD: walletBrickkenBalanceUSD,
+        changePercentage: brickkenMarketData.price_change_percentage_7d,
+      },
     ];
 
     const portfolio7d = getTotal(wallet7dBalance);
@@ -121,6 +160,14 @@ const getPortfolioData = async (req, res) => {
         balanceUSD: walletPolytradeBalanceUSD,
         changePercentage: polytradeMarketData.price_change_percentage_30d,
       },
+      {
+        balanceUSD: walletMapleBalanceUSD,
+        changePercentage: mapleMarketData.price_change_percentage_30d,
+      },
+      {
+        balanceUSD: walletBrickkenBalanceUSD,
+        changePercentage: brickkenMarketData.price_change_percentage_30d,
+      },
     ];
 
     const portfolio30d = getTotal(wallet30dBalance);
@@ -145,6 +192,14 @@ const getPortfolioData = async (req, res) => {
       {
         balanceUSD: walletPolytradeBalanceUSD,
         changePercentage: polytradeMarketData.market_cap_change_percentage_24h,
+      },
+      {
+        balanceUSD: walletMapleBalanceUSD,
+        changePercentage: mapleMarketData.market_cap_change_percentage_24h,
+      },
+      {
+        balanceUSD: walletBrickkenBalanceUSD,
+        changePercentage: brickkenMarketData.market_cap_change_percentage_24h,
       },
     ];
 
@@ -180,6 +235,14 @@ const getPortfolioHistorical = async (req, res) => {
     const walletPolygonBalance = await getPolygonBalance(
       polytradeABI,
       polytradeAddress
+    );
+    const walletBrickkenBalance = await getBnBBalance(
+      brickkenABI,
+      addressToCheck
+    );
+    const walletMapleBalance = await getEtherTokenBalance(
+      mapleABI,
+      addressToCheck
     );
 
     const condoMarketData = await getMarketData("condo");
@@ -226,11 +289,25 @@ const getPortfolioHistorical = async (req, res) => {
       walletPolygonBalance
     );
 
+    const brickkenHistoricalPrice = await getHistoricalTokenPrice("brickken");
+    const brickkenPolytradeBalance = walletValue(
+      brickkenHistoricalPrice.prices,
+      walletBrickkenBalance
+    );
+
+    const mapleHistoricalPrice = await getHistoricalTokenPrice("maple");
+    const maplePolytradeBalance = walletValue(
+      mapleHistoricalPrice.prices,
+      walletMapleBalance
+    );
+
     const datasets = {
       condo: historicalCondoBalance,
       ether: historicalEtherBalance,
       aurus: historicalAurusBalance,
       polytrade: historicalPolytradeBalance,
+      maple: maplePolytradeBalance,
+      brickken: brickkenPolytradeBalance,
     };
 
     const shortestDataset = Object.values(datasets).reduce(
@@ -257,6 +334,8 @@ const getPortfolioHistorical = async (req, res) => {
         historicalEtherBalance: alignedDatasets.ether,
         historicalAurusBalance: alignedDatasets.aurus,
         historicalPolytradeBalance: alignedDatasets.polytrade,
+        historicalMapleBalance: alignedDatasets.maple,
+        historicalBrickkenBalance: alignedDatasets.brickken,
         historicalAirdropBalance:
           walletAirdropBalanceUSD <= 0 ? null : historicalAirdropBalance,
       },
