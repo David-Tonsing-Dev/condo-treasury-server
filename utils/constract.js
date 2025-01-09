@@ -29,7 +29,7 @@ const getBaseBalance = async (ABI, address) => {
 };
 
 const getEtherBalance = async (address) => {
-  const balance = await etherWeb3.eth.getBalance(address);
+  const balance = await baseWeb3.eth.getBalance(address);
   return baseWeb3.utils.fromWei(balance, "ether");
 };
 
