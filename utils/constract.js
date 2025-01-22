@@ -28,6 +28,14 @@ const getBaseBalance = async (ABI, address) => {
   return baseWeb3.utils.fromWei(balance, "ether");
 };
 
+const fetchBaseBalance = async (ABI, walletAddress, tokenAddress) => {
+  const contractInstance = new baseWeb3.eth.Contract(ABI, tokenAddress);
+  const balance = await contractInstance.methods
+    .balanceOf(walletAddress)
+    .call();
+  return baseWeb3.utils.fromWei(balance, "ether");
+};
+
 const getEtherBalance = async (address) => {
   const balance = await baseWeb3.eth.getBalance(address);
   return baseWeb3.utils.fromWei(balance, "ether");
@@ -72,4 +80,5 @@ module.exports = {
   getPolygonBalance,
   getEtherTokenBalance,
   getBnBBalance,
+  fetchBaseBalance,
 };
