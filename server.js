@@ -7,6 +7,7 @@ const { getAssociatedTokenAddress, getAccount } = require("@solana/spl-token");
 
 const condoRoute = require("./routes/condoRoute");
 const portfolioRoute = require("./routes/portfolioRoute");
+const runCronJobs = require("./schedular/indexCoop");
 
 const app = express();
 const PORT = process.env.PORT;
@@ -134,13 +135,11 @@ app.get("/api/base/pool", async (req, res) => {
     );
     return res.status(200).json({ status: true, data: resp.data });
   } catch (err) {
-    return res
-      .status(400)
-      .json({
-        status: false,
-        message: "Internal server error",
-        error: err.message,
-      });
+    return res.status(400).json({
+      status: false,
+      message: "Internal server error",
+      error: err.message,
+    });
   }
 });
 
@@ -150,4 +149,5 @@ app.get("/home", (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Server is running in port: ${PORT}`);
+  runCronJobs();
 });
