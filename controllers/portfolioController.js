@@ -26,6 +26,7 @@ const {
   condoAirdropAddress,
   polytradeAddress,
   mapleAddress,
+  syrupAddress,
   brickkenAddress,
   eth2xAddress,
 } = require("../utils/constants/addresses");
@@ -48,7 +49,11 @@ const getPortfolioData = async (req, res) => {
       brickkenABI,
       addressToCheck
     );
-    const walletMapleBalance = await getEtherTokenBalance(
+    // const walletMapleBalance = await getEtherTokenBalance(
+    //   mapleABI,
+    //   addressToCheck
+    // );
+    const walletSyrupBalance = await getEtherTokenBalance(
       mapleABI,
       addressToCheck
     );
@@ -63,7 +68,8 @@ const getPortfolioData = async (req, res) => {
     const ethMarketData = await getMarketData("ethereum");
     const aurusxMarketData = await getMarketData("aurusx");
     const polytradeMarketData = await getMarketData("polytrade");
-    const mapleMarketData = await getMarketData("maple");
+    // const mapleMarketData = await getMarketData("maple");
+    const syrupMarketData = await getMarketData("syrup");
     const brickkenMarketData = await getMarketData("brickken");
     const eth2xMarketData = await getMarketData("index-coop-ethereum-2x-index");
 
@@ -77,8 +83,10 @@ const getPortfolioData = async (req, res) => {
       walletAurusBalance * aurusxMarketData.current_price;
     const walletPolytradeBalanceUSD =
       walletPolygonBalance * polytradeMarketData.current_price;
-    const walletMapleBalanceUSD =
-      walletMapleBalance * mapleMarketData.current_price;
+    // const walletMapleBalanceUSD =
+    //   walletMapleBalance * mapleMarketData.current_price;
+    const walletSyrupBalanceUSD =
+      walletSyrupBalance * syrupMarketData.current_price;
     const walletBrickkenBalanceUSD =
       walletBrickkenBalance * brickkenMarketData.current_price;
     const walletEth2xBalanceUSD =
@@ -105,9 +113,13 @@ const getPortfolioData = async (req, res) => {
         balanceUSD: walletPolytradeBalanceUSD,
         changePercentage: polytradeMarketData.price_change_percentage_24h,
       },
+      // {
+      //   balanceUSD: walletMapleBalanceUSD,
+      //   changePercentage: mapleMarketData.price_change_percentage_24h,
+      // },
       {
-        balanceUSD: walletMapleBalanceUSD,
-        changePercentage: mapleMarketData.price_change_percentage_24h,
+        balanceUSD: walletSyrupBalanceUSD,
+        changePercentage: syrupMarketData.price_change_percentage_24h,
       },
       {
         balanceUSD: walletBrickkenBalanceUSD,
@@ -142,9 +154,13 @@ const getPortfolioData = async (req, res) => {
         balanceUSD: walletPolytradeBalanceUSD,
         changePercentage: polytradeMarketData.price_change_percentage_7d,
       },
+      // {
+      //   balanceUSD: walletMapleBalanceUSD,
+      //   changePercentage: mapleMarketData.price_change_percentage_7d,
+      // },
       {
-        balanceUSD: walletMapleBalanceUSD,
-        changePercentage: mapleMarketData.price_change_percentage_7d,
+        balanceUSD: walletSyrupBalanceUSD,
+        changePercentage: syrupMarketData.price_change_percentage_7d,
       },
       {
         balanceUSD: walletBrickkenBalanceUSD,
@@ -179,9 +195,13 @@ const getPortfolioData = async (req, res) => {
         balanceUSD: walletPolytradeBalanceUSD,
         changePercentage: polytradeMarketData.price_change_percentage_30d,
       },
+      // {
+      //   balanceUSD: walletMapleBalanceUSD,
+      //   changePercentage: mapleMarketData.price_change_percentage_30d,
+      // },
       {
-        balanceUSD: walletMapleBalanceUSD,
-        changePercentage: mapleMarketData.price_change_percentage_30d,
+        balanceUSD: walletSyrupBalanceUSD,
+        changePercentage: syrupMarketData.price_change_percentage_30d,
       },
       {
         balanceUSD: walletBrickkenBalanceUSD,
@@ -216,9 +236,13 @@ const getPortfolioData = async (req, res) => {
         balanceUSD: walletPolytradeBalanceUSD,
         changePercentage: polytradeMarketData.market_cap_change_percentage_24h,
       },
+      // {
+      //   balanceUSD: walletMapleBalanceUSD,
+      //   changePercentage: mapleMarketData.market_cap_change_percentage_24h,
+      // },
       {
-        balanceUSD: walletMapleBalanceUSD,
-        changePercentage: mapleMarketData.market_cap_change_percentage_24h,
+        balanceUSD: walletSyrupBalanceUSD,
+        changePercentage: syrupMarketData.market_cap_change_percentage_24h,
       },
       {
         balanceUSD: walletBrickkenBalanceUSD,
@@ -327,8 +351,8 @@ const getPortfolioHistorical = async (req, res) => {
       walletBrickkenBalance
     );
 
-    const mapleHistoricalPrice = await getHistoricalTokenPrice("maple");
-    const maplePolytradeBalance = walletValue(
+    const mapleHistoricalPrice = await getHistoricalTokenPrice("syrup");
+    const syrupPolytradeBalance = walletValue(
       mapleHistoricalPrice.prices,
       walletMapleBalance
     );
@@ -346,7 +370,7 @@ const getPortfolioHistorical = async (req, res) => {
       ether: historicalEtherBalance,
       aurus: historicalAurusBalance,
       polytrade: historicalPolytradeBalance,
-      maple: maplePolytradeBalance,
+      syrup: syrupPolytradeBalance,
       brickken: brickkenPolytradeBalance,
       eth2x: histocialEth2xBalance,
     };
@@ -375,7 +399,7 @@ const getPortfolioHistorical = async (req, res) => {
         historicalEtherBalance: alignedDatasets.ether,
         historicalAurusBalance: alignedDatasets.aurus,
         historicalPolytradeBalance: alignedDatasets.polytrade,
-        historicalMapleBalance: alignedDatasets.maple,
+        historicalSyrupBalance: alignedDatasets.syrup,
         historicalBrickkenBalance: alignedDatasets.brickken,
         histocialEth2xBalance: alignedDatasets.eth2x,
         historicalAirdropBalance:

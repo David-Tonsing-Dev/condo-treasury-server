@@ -3,6 +3,7 @@ const {
   condoContractAddress,
   polytradeContractAddress,
   mapleAddress,
+  syrupAddress,
   brickkenAddress,
 } = require("./constants/addresses");
 
@@ -67,7 +68,7 @@ const getBnBBalance = async (ABI, address) => {
 };
 
 const getEtherTokenBalance = async (ABI, address) => {
-  const contractAddress = new etherWeb3.eth.Contract(ABI, mapleAddress);
+  const contractAddress = new etherWeb3.eth.Contract(ABI, syrupAddress);
   const balance = await contractAddress.methods.balanceOf(address).call();
   return etherWeb3.utils.fromWei(balance, "ether");
 };

@@ -1,5 +1,6 @@
 const cron = require("node-cron");
 const axios = require("axios");
+const TokenMarketIndexCoop = require("../models/indexCoopModel");
 
 let cronRun = 0;
 
