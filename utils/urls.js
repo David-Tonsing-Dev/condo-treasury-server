@@ -9,31 +9,46 @@ const options = {
 };
 
 const getMarketData = async (token) => {
-  const resp = await axios(
-    `${COINGECKO_URL}/coins/${token}?market_data=true&community_data=false&developer_data=false`,
-    options
-  );
+  try {
+    const resp = await axios(
+      `${COINGECKO_URL}/coins/${token}?market_data=true&community_data=false&developer_data=false`,
+      options
+    );
 
-  const marketData = resp.data.market_data;
+    const marketData = resp.data.market_data;
 
-  return {
-    current_price: marketData.current_price.usd,
-    price_change_percentage_24h: marketData.price_change_percentage_24h,
-    price_change_percentage_7d: marketData.price_change_percentage_7d,
-    price_change_percentage_14d: marketData.price_change_percentage_14d,
-    price_change_percentage_30d: marketData.price_change_percentage_30d,
-    market_cap_change_percentage_24h:
-      marketData.market_cap_change_percentage_24h,
-  };
+    return {
+      current_price: marketData.current_price.usd,
+      price_change_percentage_24h: marketData.price_change_percentage_24h,
+      price_change_percentage_7d: marketData.price_change_percentage_7d,
+      price_change_percentage_14d: marketData.price_change_percentage_14d,
+      price_change_percentage_30d: marketData.price_change_percentage_30d,
+      market_cap_change_percentage_24h:
+        marketData.market_cap_change_percentage_24h,
+    };
+  } catch (err) {
+    return {
+      current_price: 0,
+      price_change_percentage_24h: 0,
+      price_change_percentage_7d: 0,
+      price_change_percentage_14d: 0,
+      price_change_percentage_30d: 0,
+      market_cap_change_percentage_24h: 0,
+    };
+  }
 };
 
 const getHistoricalTokenPrice = async (token) => {
-  const resp = await axios.get(
-    `${COINGECKO_URL}/coins/${token}/market_chart?vs_currency=usd&days=1`,
-    options
-  );
+  try {
+    const resp = await axios.get(
+      `${COINGECKO_URL}/coins/${token}/market_chart?vs_currency=usd&days=1`,
+      options
+    );
 
-  return resp.data;
+    return resp.data;
+  } catch (err) {
+    return;
+  }
 };
 
 const fetchTokenHistoricalPrice = async (tokens) => {
