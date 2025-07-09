@@ -14,24 +14,24 @@ const runCronJobs = require("./schedular/indexCoop");
 const app = express();
 const PORT = process.env.PORT;
 
-// const allowedOrigins = [
-//   "https://rwa-f1623a22e3ed.herokuapp.com",
-//   "https://condo-app-server-2ef9df89c3da.herokuapp.com",
-// ];
+const allowedOrigins = [
+  "https://rwahedgefund.netlify.app",
+  "https://condobase.io",
+];
 
-// const corsOptions = {
-//   origin: function (origin, callback) {
-//     if (!origin) return callback(null, true);
-//     if (allowedOrigins.indexOf(origin) === -1) {
-//       const msg =
-//         "The CORS policy for this site does not allow access from the specified Origin.";
-//       return callback(new Error(msg), false);
-//     }
-//     return callback(null, true);
-//   },
-// };
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg =
+        "The CORS policy for this site does not allow access from the specified Origin.";
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
+};
 
-app.use(cors());
+app.use(cors(corsOptions));
 
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
