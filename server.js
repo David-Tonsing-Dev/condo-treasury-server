@@ -14,27 +14,7 @@ const runCronJobs = require("./schedular/indexCoop");
 const app = express();
 const PORT = process.env.PORT;
 
-const allowedOrigins = [
-  "https://rwahedgefund.netlify.app",
-  "https://condobase.io",
-];
-
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(
-        new Error("CORS policy does not allow access from this origin."),
-        false
-      );
-    }
-  },
-  methods: ["GET", "POST", "OPTIONS"],
-  credentials: true,
-};
-
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
