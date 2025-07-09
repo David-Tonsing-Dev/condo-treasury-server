@@ -21,14 +21,17 @@ const allowedOrigins = [
 
 const corsOptions = {
   origin: function (origin, callback) {
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) === -1) {
-      const msg =
-        "The CORS policy for this site does not allow access from the specified Origin.";
-      return callback(new Error(msg), false);
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(
+        new Error("CORS policy does not allow access from this origin."),
+        false
+      );
     }
-    return callback(null, true);
   },
+  methods: ["GET", "POST", "OPTIONS"],
+  credentials: true,
 };
 
 app.use(cors(corsOptions));
