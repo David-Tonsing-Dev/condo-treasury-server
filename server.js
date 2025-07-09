@@ -14,10 +14,30 @@ const runCronJobs = require("./schedular/indexCoop");
 const app = express();
 const PORT = process.env.PORT;
 
+// const corsOptions = {
+//   origin: "https://rwahedgefund.netlify.app",
+//   methods: ["GET"],
+//   credentials: true,
+// };
+// app.use(cors(corsOptions));
+
+const allowedOrigins = [
+  "https://rwa-f1623a22e3ed.herokuapp.com",
+  "https://condo-app-server-2ef9df89c3da.herokuapp.com",
+];
+
 const corsOptions = {
-  origin: "https://rwahedgefund.netlify.app",
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   methods: ["GET"],
+  credentials: true,
 };
+
 app.use(cors(corsOptions));
 
 app.set("view engine", "ejs");
