@@ -14,7 +14,11 @@ const runCronJobs = require("./schedular/indexCoop");
 const app = express();
 const PORT = process.env.PORT;
 
-app.use(cors());
+const corsOptions = {
+  origin: "https://rwahedgefund.netlify.app",
+  methods: ["GET"],
+};
+app.use(cors(corsOptions));
 
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));

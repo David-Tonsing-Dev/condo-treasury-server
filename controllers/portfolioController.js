@@ -317,6 +317,7 @@ const getPortfolioHistorical = async (req, res) => {
     //   walletPolygonBalance * polytradeMarketData.current_price;
 
     const condoHistoricalPrice = await getHistoricalTokenPrice("condo");
+    // console.log("condoHistoricalPrice", condoHistoricalPrice);
     const historicalCondoBalance = walletValue(
       condoHistoricalPrice.prices,
       walletCondoBalance
@@ -334,6 +335,7 @@ const getPortfolioHistorical = async (req, res) => {
     );
 
     const aurusHistoricalPrice = await getHistoricalTokenPrice("aurusx");
+
     const historicalAurusBalance = walletValue(
       aurusHistoricalPrice.prices,
       walletAurusBalance
@@ -357,13 +359,19 @@ const getPortfolioHistorical = async (req, res) => {
       walletMapleBalance
     );
 
-    const eth2xHistoricalPrice = await getHistoricalTokenPrice(
-      "index-coop-ethereum-2x-index"
-    );
-    const histocialEth2xBalance = walletValue(
-      eth2xHistoricalPrice.prices,
-      walletEth2xBalance
-    );
+    // const eth2xHistoricalPrice = await getHistoricalTokenPrice(
+    //   "index-coop-ethereum-2x-index"
+    // );
+    // const histocialEth2xBalance = walletValue(
+    //   eth2xHistoricalPrice.prices,
+    //   walletEth2xBalance
+    // );
+
+    // console.log(
+    //   "historicalAurusBalance",
+    //   historicalCondoBalance,
+    //   historicalAurusBalance
+    // );
 
     const datasets = {
       condo: historicalCondoBalance,
@@ -372,7 +380,7 @@ const getPortfolioHistorical = async (req, res) => {
       polytrade: historicalPolytradeBalance,
       syrup: syrupPolytradeBalance,
       brickken: brickkenPolytradeBalance,
-      eth2x: histocialEth2xBalance,
+      // eth2x: histocialEth2xBalance,
     };
 
     const shortestDataset = Object.values(datasets).reduce(
@@ -401,7 +409,7 @@ const getPortfolioHistorical = async (req, res) => {
         historicalPolytradeBalance: alignedDatasets.polytrade,
         historicalSyrupBalance: alignedDatasets.syrup,
         historicalBrickkenBalance: alignedDatasets.brickken,
-        histocialEth2xBalance: alignedDatasets.eth2x,
+        // histocialEth2xBalance: alignedDatasets.eth2x,
         historicalAirdropBalance:
           walletAirdropBalanceUSD <= 0 ? null : historicalAirdropBalance,
       },
