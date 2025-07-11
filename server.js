@@ -80,10 +80,10 @@ app.get("/home", (req, res) => {
   res.render("pages/home");
 });
 
-// mongoose.connect(process.env.MONGODB_URL).then(() => {
-app.listen(PORT, () => {
-  console.log(`Server is running in port: ${PORT}`);
-  // runCronJobs();
-  indexCoopStart();
+mongoose.connect(process.env.MONGODB_URL).then(() => {
+  app.listen(PORT, () => {
+    console.log(`Server is running in port: ${PORT}`);
+    // runCronJobs();
+    indexCoopStart();
+  });
 });
-// });

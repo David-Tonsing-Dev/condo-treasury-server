@@ -42,6 +42,7 @@ const storeIndexCoopData = async () => {
       addressToCheck
     );
     const balance = parseFloat(indexCoopBalance);
+
     const price = await fetchIndexCoopPrice();
 
     const now = new Date();
@@ -57,7 +58,6 @@ const storeIndexCoopData = async () => {
         },
       ],
     });
-
     await newData.save();
     console.log(` Storing Index Coop price`);
   } catch (err) {
