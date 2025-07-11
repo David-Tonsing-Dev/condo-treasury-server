@@ -1,17 +1,17 @@
 const cron = require("node-cron");
-const axios = require("axios");
-const TokenMarketIndexCoop = require("../models/indexCoopModel");
+const storeIndexCoopData = require("../helpers/storeIndexCoopData");
 
-let cronRun = 0;
+const indexCoopStart = async () => {
+  try {
+    cron.schedule("0 * * * *", async () => {
+      console.log("Running Index Coop job...");
+      await storeIndexCoopData();
+    });
 
-const runCronJobs = () => {
-  cron.schedule("*/10 * * * *", async () => {
-    cronRun++;
-    const indexCoopDetail = await axios.get(
-      "https://api.indexcoop.com/data/tokens/0xc884646e6c88d9b172a23051b38b0732cc3e35a6?metrics=supply&metrics=nav"
-    );
-    console.log("indexCoopDetail", indexCoopDetail.data, "cronRun", cronRun);
-  });
+    console.log("Index Coop CRON job started successfully!");
+  } catch (err) {
+    console.error("Error:", err);
+  }
 };
 
-module.exports = runCronJobs;
+module.exports = indexCoopStart;

@@ -9,7 +9,8 @@ const { getAssociatedTokenAddress, getAccount } = require("@solana/spl-token");
 const condoRoute = require("./routes/condoRoute");
 const portfolioRoute = require("./routes/portfolioRoute");
 const poolRoute = require("./routes/poolRoute");
-const runCronJobs = require("./schedular/indexCoop");
+// const runCronJobs = require("./schedular/indexCoop");
+const indexCoopStart = require("./schedular/indexCoop");
 
 const app = express();
 const PORT = process.env.PORT;
@@ -83,5 +84,6 @@ app.get("/home", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running in port: ${PORT}`);
   // runCronJobs();
+  indexCoopStart();
 });
 // });
