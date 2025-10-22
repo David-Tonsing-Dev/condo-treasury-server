@@ -11,6 +11,8 @@ const portfolioRoute = require("./routes/portfolioRoute");
 const poolRoute = require("./routes/poolRoute");
 // const runCronJobs = require("./schedular/indexCoop");
 const indexCoopStart = require("./schedular/indexCoop");
+const condoTreasuryTokensRoute = require("./routes/condoTreasuryTokensRoute");
+const treasury = require("./schedular/treasury");
 
 const app = express();
 const PORT = process.env.PORT;
@@ -23,6 +25,7 @@ app.use(express.static(__dirname + "/public"));
 app.use("/api/condo", condoRoute);
 app.use("/api/portfolio", portfolioRoute);
 app.get("/api/base", poolRoute);
+app.use("/api/treasuryTokens", condoTreasuryTokensRoute);
 
 app.get("/", (req, res) => {
   res.render("pages/landing");
@@ -85,5 +88,6 @@ mongoose.connect(process.env.MONGODB_URL).then(() => {
     console.log(`Server is running in port: ${PORT}`);
     // runCronJobs();
     indexCoopStart();
+    treasury();
   });
 });
