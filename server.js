@@ -25,7 +25,7 @@ app.use(express.static(__dirname + "/public"));
 app.use("/api/condo", condoRoute);
 app.use("/api/portfolio", portfolioRoute);
 app.get("/api/base", poolRoute);
-app.use("/api/treasuryTokens", condoTreasuryTokensRoute);
+app.use("/api/treasury-tokens", condoTreasuryTokensRoute);
 
 app.get("/", (req, res) => {
   res.render("pages/landing");
